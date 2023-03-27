@@ -1,0 +1,46 @@
+<div class="background-div">
+    <mat-card class="login-card">
+        <div class="image-div">
+            <div class="logo-div">
+                <span>Students</span>
+                <span>Talk</span>
+            </div>
+            <div class="logo-desc-div">
+                Express your thoughts freely
+            </div>
+        </div>
+        <div class="form-div">
+            <form (ngSubmit)="onLogin" name="loginForm" [formGroup]="loginForm" >
+                <h1>Welcome</h1>
+                <div class="username-input">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Username</mat-label>
+                        <input type="username" formControlName="username" matInput required>
+                        <mat-error *ngIf="loginForm.get('username')?.errors?.['required']" >
+                            Username required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="password-input">
+                    <mat-form-field class="full-width" appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+            
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="loginForm.get('password')?.errors?.['required']" >
+                            Password required
+                        </mat-error>
+                    </mat-form-field>  
+                </div>
+            
+                <button mat-raised-button id="sbmt-btn" class="full-width" (click)="onLogin()">LOGIN</button><br><br>
+            </form>
+            <div class="account-creation-div">
+                <span>Don't have an account? <a href="Signup">Create one</a></span>
+            </div>
+        </div>
+    </mat-card>
+</div>

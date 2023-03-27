@@ -1,0 +1,159 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+.main-vue{
+    display: flex;
+    height: 100%;
+}
+
+.sidebar{
+    height: 100%;
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
+
+.sidebar-body{
+    height: 95vh;
+    width: 18vw;
+    margin: 2vh;
+    border-radius: 15px;
+    background-color: #205295;
+    color: white;
+    box-shadow: #20539579 0px 7px 29px 0px !important;
+    transition: box-shadow 1s ease !important;
+}
+
+.sidebar-body:hover{
+    box-shadow: #205395af 0px 7px 40px 0px !important;
+}
+
+/*8EA7E9
+6886C5
+205295
+*/
+
+.logo-div {
+    margin: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.logo-div > span:first-child{
+    line-height: 7vh;
+    font-size: 2.5em;
+    background-color: white;
+    border-radius: 7px;
+    color: #205295;
+    padding: 5px;
+    height:7vh ;
+    text-align: center;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.logo-div > span:nth-child(2){
+    text-align: center;
+    font-size: 2.5em;
+    padding: 5px;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif !important;
+}
+.profile-div{
+    margin: 3vh;
+    display: flex;
+    height: 8vh;
+}
+
+.profile-image{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 1vh;
+    border: none;
+}
+.profile-desc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.profile-name{
+    font-size: 24px;
+    color:white;
+}
+.profile-username{
+    font-size: 15px;
+    color: #eee;
+}
+
+.links-div{
+    margin: 0vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+}
+
+.link{
+    transition: background-color 1s;
+    height: 8vh;
+    border-radius: 5vh;
+    display: flex;
+    align-items: center;
+    margin: 2vh; 
+}
+.link a{
+    text-decoration: none;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+}
+
+.link .icon{
+    color: white;
+    margin: 2vh;
+    transform: scale(1.2);
+    border-right: 1px solid white;
+    padding-right: 1vh;
+}
+
+.link:hover{
+    background-color: rgb(178, 178, 178);
+}
+
+.link-selected{
+    color: orange;
+}
+
+
+.post-btn-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vh;
+    margin-top: 5vh;
+    text-align: center;
+    border-radius: 5vh;
+    height: 7vh;
+    font-size: 2em;
+    font-weight: bold;
+    background-color: white;
+    color: #205295;
+    transition: box-shadow 1s ease !important;
+}
+
+.post-btn-div:hover{
+    cursor: pointer;
+    box-shadow: #ffffff3d 0px 3px 30px 0px !important;
+}
+
+
+router-outlet{
+    margin-left: 20vw;
+}
