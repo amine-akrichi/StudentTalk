@@ -101,13 +101,23 @@
 }
 
 .link{
-    transition: background-color 1s;
+    transition: background-color .5s;
     height: 8vh;
     border-radius: 5vh;
     display: flex;
     align-items: center;
     margin: 2vh; 
 }
+
+.link:hover{
+    background-color: rgba(178, 178, 178, 0.099);
+}
+
+.link-selected{
+    color: orange;
+}
+
+
 .link a{
     text-decoration: none;
     font-size: 24px;
@@ -122,15 +132,6 @@
     border-right: 1px solid white;
     padding-right: 1vh;
 }
-
-.link:hover{
-    background-color: rgb(178, 178, 178);
-}
-
-.link-selected{
-    color: orange;
-}
-
 
 .post-btn-div{
     display: flex;

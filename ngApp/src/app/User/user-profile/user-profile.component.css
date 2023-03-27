@@ -1,0 +1,126 @@
+
+.profile-info-div {
+    margin: 2.5vh;
+    width: calc(80vw - 8vh);
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px ;
+    align-items: center;
+    padding: 2vh;
+}
+
+.profile-img {
+    border: none;
+    border-radius: 50%;
+    width: 150px;
+}
+
+.user-profile-desc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+}
+
+.profile-personal-info h1 {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.profile-personal-info span {
+    color: #205295;
+    font-size: 1.5em;
+}
+
+.profile-stats {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-items: center;    
+}
+
+.stat {
+    margin: 2vh;
+    width: 15vw;
+    height: 10vh;
+    color: #205295;;
+    text-align: center;
+}
+
+.stat h1{
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.stat span{
+    
+    font-size: 2em;
+}
+
+
+.user-posts {
+    margin: 2vh;
+    width: calc(80vw - 6vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.post-card {
+    width: 60%;
+    border-radius: 15px;
+    margin: 2vh;
+    display: flex;
+    align-items: center;
+}
+
+.post-img {
+    width: 90%;
+    height: 50vh;
+    border-radius: 15px;
+    object-fit:cover;
+}
+
+
+.post-creator {
+    width: 90%;
+    margin-top: 2vh;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.profile-image {
+    border-radius: 50%;
+    background-color: #205295;
+    width: 50px;
+    height: 50px;
+    margin: 1vh;
+    border: none;
+}
+
+.profile-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-name {
+    font-size: 24px;
+}
+
+.profile-username {
+    font-size: 15px;
+    color: grey;
+}
+
+.post-details {
+    margin: 2vh;
+    width: 90%;
+}
+
+.post-details h1 {
+    font-size: 30px;
+    font-weight: bold;
+}
