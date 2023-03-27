@@ -11,19 +11,17 @@
         </div>
         <div class="form-div">
             <form (ngSubmit)="onLogin" name="loginForm" [formGroup]="loginForm" >
-                <h1>Welcome</h1>
-                <div class="username-input">
-                    <mat-form-field class="full-width" appearance="outline">
+                <h1>Welcome back</h1>
+                <div class="form-control">
+                    <mat-form-field class="form-control-full-width" appearance="outline">
                         <mat-label>Username</mat-label>
                         <input type="username" formControlName="username" matInput required>
                         <mat-error *ngIf="loginForm.get('username')?.errors?.['required']" >
                             Username required
                         </mat-error>
                     </mat-form-field>
-                </div>
-                <br>
-                <div class="password-input">
-                    <mat-form-field class="full-width" appearance="outline">
+                
+                    <mat-form-field class="form-control-full-width" appearance="outline">
                         <mat-label>Password</mat-label>
                         <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
             
@@ -33,10 +31,9 @@
                         <mat-error *ngIf="loginForm.get('password')?.errors?.['required']" >
                             Password required
                         </mat-error>
-                    </mat-form-field>  
+                    </mat-form-field> 
                 </div>
-            
-                <button mat-raised-button id="sbmt-btn" class="full-width" (click)="onLogin()">LOGIN</button><br><br>
+                <button mat-raised-button id="sbmt-btn" class="full-width" (click)="onLogin()">Login</button><br><br>
             </form>
             <div class="account-creation-div">
                 <span>Don't have an account? <a href="Signup">Create one</a></span>
