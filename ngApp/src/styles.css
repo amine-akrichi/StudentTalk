@@ -1,51 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
 @keyframes fadeIn {
-    from {
-      opacity: 0.2;
-    }
-    to {
-      opacity: 1;
-    }
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+html,
 body {
-    animation: fadeIn 0.2s ease-in;
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-mat-card{
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
-    transition: box-shadow 1s ease !important;
+* {
+  animation: fadeIn 0.2s ease-in;
 }
 
-mat-card:hover{
-    box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 40px 0px !important;
-}
-  
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
-
-
-*:not(mat-icon){
-    font-family: 'Quicksand', sans-serif !important;
+mat-card {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+  transition: box-shadow 1s ease !important;
 }
 
-*::-webkit-scrollbar{
-    width: 1vh;
+mat-card:hover {
+  box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 40px 0px !important;
 }
 
-*::-webkit-scrollbar-thumb{
-    border-radius: 5px;
-    background-color: #205295;
+.cdk-global-scrollblock {
+  position: initial !important;
+  width: initial !important;
+  overflow: hidden !important;
 }
 
-*::-webkit-scrollbar-track{
-    border-radius: 5px;
-    background-color: #ddd;
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
+
+*:not(mat-icon) {
+  font-family: "Quicksand", sans-serif !important;
 }
 
-*::-webkit-scrollbar-thumb:hover{
-    border-radius: 5px;
-    background-color: #205295;
+*::-webkit-scrollbar {
+  width: 1vh;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #205295;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: #ddd;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  border-radius: 5px;
+  background-color: #205295;
 }

@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 //Angular Material imports
-import { MatCardModule } from "@angular/material/card";
-import { MatIconModule } from "@angular/material/icon";
-import { MatInputModule } from "@angular/material/input";
-import { MatButtonModule } from "@angular/material/button";
-
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 //Form imports
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +18,13 @@ import { UserHomepageComponent } from './User/user-homepage/user-homepage.compon
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
 import { LoginComponent } from './shared/login/login.component';
 import { SignupComponent } from './shared/signup/signup.component';
+import { UserPostingDialogComponent } from './User/components/user-posting-dialog/user-posting-dialog.component';
+import { UserCommentsDialogComponent } from './User/components/user-comments-dialog/user-comments-dialog.component';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { PostService } from './services/post.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -28,22 +33,28 @@ import { SignupComponent } from './shared/signup/signup.component';
     UserHomepageComponent,
     UserProfileComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    UserPostingDialogComponent,
+    UserCommentsDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
 
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
 
     MatCardModule,
     MatIconModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatButtonModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService, UserService, PostService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

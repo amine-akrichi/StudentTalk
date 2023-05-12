@@ -1,66 +1,82 @@
 <div class="background-div">
-    <mat-card class="login-card">
-        
-        <div class="form-div">
-            <form (ngSubmit)="onLogin" name="loginForm" [formGroup]="loginForm">
-                <h1>Create an account</h1>
-                <div class="form-control">
+  <mat-card class="login-card">
+    <div class="form-div">
+      <form name="loginForm" [formGroup]="signupForm">
+        <h1>Create an account</h1>
+        <div class="form-control">
+          <mat-form-field class="form-control-half-width" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input type="name" formControlName="name" matInput />
+          </mat-form-field>
 
-                    <mat-form-field class="form-control-half-width" appearance="outline">
-                        <mat-label>Name</mat-label>
-                        <input type="name" formControlName="name" matInput >
-                    </mat-form-field>
+          <mat-form-field class="form-control-half-width" appearance="outline">
+            <mat-label>Lastname</mat-label>
+            <input type="lastname" formControlName="lastname" matInput />
+          </mat-form-field>
 
-                    <mat-form-field class="form-control-half-width" appearance="outline">
-                        <mat-label>Lastname</mat-label>
-                        <input type="lastname" formControlName="lastname" matInput>
-                    </mat-form-field>
+          <mat-form-field class="form-control-full-width" appearance="outline">
+            <mat-label>Email adress</mat-label>
+            <input type="email" formControlName="email" matInput required />
+            <mat-error *ngIf="signupForm.get('email')?.errors?.['required']">
+              Email adress required
+            </mat-error>
+          </mat-form-field>
 
-                    <mat-form-field class="form-control-full-width" appearance="outline">
-                        <mat-label>Email adress</mat-label>
-                        <input type="email" formControlName="email" matInput required>
-                        <mat-error *ngIf="loginForm.get('email')?.errors?.['required']">
-                            Email adress required
-                        </mat-error>
-                    </mat-form-field>
+          <mat-form-field class="form-control-full-width" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              type="username"
+              formControlName="username"
+              matInput
+              required
+            />
+            <mat-error *ngIf="signupForm.get('username')?.errors?.['required']">
+              Username required
+            </mat-error>
+          </mat-form-field>
 
-                    <mat-form-field class="form-control-full-width" appearance="outline">
-                        <mat-label>Username</mat-label>
-                        <input type="username" formControlName="username" matInput required>
-                        <mat-error *ngIf="loginForm.get('username')?.errors?.['required']">
-                            Username required
-                        </mat-error>
-                    </mat-form-field>
+          <mat-form-field class="form-control-full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              formControlName="password"
+              matInput
+              [type]="hide ? 'password' : 'text'"
+            />
 
-                    <mat-form-field class="form-control-full-width" appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
-
-                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                            [attr.aria-pressed]="hide">
-                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                        </button>
-                        <mat-error *ngIf="loginForm.get('password')?.errors?.['required']">
-                            Password required
-                        </mat-error>
-                    </mat-form-field>
-
-                </div>
-
-                <button mat-raised-button id="sbmt-btn" class="full-width" >Signup</button><br><br>
-            </form>
-            <div class="account-creation-div">
-                <span>Already have an account? <a href="Login">Login</a></span>
-            </div>
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <mat-error *ngIf="signupForm.get('password')?.errors?.['required']">
+              Password required
+            </mat-error>
+          </mat-form-field>
         </div>
-        <div class="image-div">
-            <div class="logo-div">
-                <span>Students</span>
-                <span>Talk</span>
-            </div>
-            <div class="logo-desc-div">
-                Express your thoughts freely
-            </div>
-        </div>
-    </mat-card>
+
+        <button
+          mat-raised-button
+          id="sbmt-btn"
+          class="full-width"
+          (click)="onSignup()"
+        >
+          Signup</button
+        ><br /><br />
+      </form>
+      <div class="account-creation-div">
+        <span>Already have an account? <a href="Login">Login</a></span>
+      </div>
+    </div>
+    <div class="image-div">
+      <div class="logo-div">
+        <span>Students</span>
+        <span>Talk</span>
+      </div>
+      <div class="logo-desc-div">Express your thoughts freely</div>
+    </div>
+  </mat-card>
 </div>

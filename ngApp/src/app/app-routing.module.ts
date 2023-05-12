@@ -8,36 +8,36 @@ import { UserSidebarComponent } from './User/user-sidebar/user-sidebar.component
 
 const routes: Routes = [
   {
-    path:'',
-    redirectTo:'Homepage',
-    pathMatch:'full'
+    path: '',
+    redirectTo: 'Login',
+    pathMatch: 'full',
   },
   {
-    path:'',
-    component:UserSidebarComponent,
-    children:[
+    path: 'User',
+    component: UserSidebarComponent,
+    children: [
       {
-        path:'Homepage',
-        component:UserHomepageComponent
+        path: 'Homepage',
+        component: UserHomepageComponent,
       },
       {
-        path:'Profile',
-        component:UserProfileComponent
-      }
-    ]
+        path: 'Profile',
+        component: UserProfileComponent,
+      },
+    ],
   },
   {
-    path:'Login',
-    component:LoginComponent
+    path: 'Login',
+    component: LoginComponent,
   },
   {
-    path:'Signup',
-    component:SignupComponent
-  }
+    path: 'Signup',
+    component: SignupComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

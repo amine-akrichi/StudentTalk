@@ -1,47 +1,57 @@
 <div class="main-vue">
-    <div class="sidebar">
-        <mat-card class="sidebar-body">
-            <div class="logo-div">
-                <span>Students</span>
-                <span>Talk</span>
-            </div>
+  <div class="sidebar">
+    <mat-card class="sidebar-body">
+      <div class="logo-div">
+        <span>Students</span>
+        <span>Talk</span>
+      </div>
 
+      <div class="links-div">
+        <div class="link" routerLink="Homepage" routerLinkActive="link-active">
+          <mat-icon class="icon">home</mat-icon>
+          <span>Homepage</span>
+        </div>
+        <div class="link" routerLinkActive="link-active">
+          <mat-icon class="icon">local_fire_department</mat-icon>
+          <span>Trending </span>
+        </div>
+        <div class="link" routerLinkActive="link-active">
+          <mat-icon class="icon">apps</mat-icon>
+          <span>Caterogies </span>
+        </div>
+        <div class="link" routerLinkActive="link-active">
+          <mat-icon class="icon">notifications</mat-icon>
+          <span>Notifications </span>
+        </div>
+      </div>
 
-            <div class="links-div">
-                <div class="link">
-                    <mat-icon class="icon">home</mat-icon>
-                    <a href="">Homepage </a>
-                </div>
-                <div class="link">
-                    <mat-icon class="icon">local_fire_department</mat-icon>
-                    <a href="">Trending </a>
-                </div>
-                <div class="link">
-                    <mat-icon class="icon">apps</mat-icon>
-                    <a href="">Caterogies </a>
-                </div>
-                <div class="link">
-                    <mat-icon class="icon">notifications</mat-icon>
-                    <a href="">Notifications </a>
-                </div>
-            </div>
+      <mat-card (click)="openPostDialog()" class="post-btn-div">
+        <span>POST</span>
+      </mat-card>
 
-            <mat-card class="post-btn-div">
-                <span>POST</span>
-            </mat-card>
-
-            <div class="profile-div">
-                <img class="profile-image" src="assets\Profile_placeholder.png" alt="">
-                <div class="profile-desc">
-                    <span class="profile-name">
-                        name
-                    </span>
-                    <span class="profile-username">
-                        username
-                    </span>
-                </div>
-            </div>
-        </mat-card>
-    </div>
-    <router-outlet></router-outlet>
+      <div
+        class="profile-div"
+        routerLink="Profile"
+        routerLinkActive="link-active"
+      >
+        <img
+          class="profile-image"
+          src="assets\Profile_placeholder.png"
+          alt=""
+        />
+        <div class="profile-desc">
+          <span class="profile-name">
+            {{ this.loggedInUser.name }} {{ this.loggedInUser.lastname }}
+          </span>
+          <span class="profile-username">
+            @{{ this.loggedInUser.username }}
+          </span>
+        </div>
+        <button mat-mini-fab color="warn" id="logout-btn" (click)="onLogout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </div>
+  <router-outlet></router-outlet>
 </div>
