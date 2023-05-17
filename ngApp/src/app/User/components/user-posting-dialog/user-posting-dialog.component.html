@@ -1,26 +1,32 @@
-<h1 mat-dialog-title style="font-size: 2em">Create a new post</h1>
+<div class="mat-dialog-title" mat-dialog-title>
+  <h1 style="font-size: 1.6em">Create a new post</h1>
+  <input id="upload-photo" type="file" accept="image/*" />
+  <label for="upload-photo" id="upload-photo-label">
+    <mat-icon>add_photo_alternate</mat-icon> &nbsp; Upload a photo
+  </label>
+</div>
 <mat-dialog-content class="mat-typography">
   <div class="row">
     <mat-form-field class="form-control-full-width" appearance="outline">
       <mat-label>Title</mat-label>
-      <input matInput name="title" />
+      <input [(ngModel)]="data.postTitle" matInput name="title" />
     </mat-form-field>
   </div>
   <div class="row">
     <mat-form-field class="form-control-full-width" appearance="outline">
       <mat-label>Content</mat-label>
-      <textarea matInput name="content" rows="10"></textarea>
+      <textarea
+        [(ngModel)]="data.postContent"
+        matInput
+        name="content"
+        rows="10"
+      ></textarea>
     </mat-form-field>
-  </div>
-
-  <div class="row">
-    Add a photo :
-    <input type="file" />
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button id="confirm-btn" [mat-dialog-close]="true" cdkFocusInitial>
+  <button mat-button id="confirm-btn" [mat-dialog-close]="data" cdkFocusInitial>
     Confirm
   </button>
 </mat-dialog-actions>

@@ -25,6 +25,7 @@ import { UserService } from './services/user.service';
 import { PostService } from './services/post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatMenuModule,
   ],
   providers: [AuthService, UserService, PostService],
   bootstrap: [AppComponent],

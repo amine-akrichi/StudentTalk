@@ -26,3 +26,30 @@
   color: #205295;
   font-size: 1.2em;
 }
+
+#upload-photo {
+  display: none;
+}
+
+#upload-photo-label {
+  background-color: #205295;
+  color: white;
+  cursor: pointer;
+  padding: 1vh;
+  margin: 1vh;
+  border-radius: 5vh;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1vh;
+}
+
+.mat-dialog-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2vh;
+}

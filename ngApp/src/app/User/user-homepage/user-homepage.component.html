@@ -13,24 +13,43 @@
   </div>
 </nav>
 <section class="homepage">
-  <mat-card class="post-card">
+  <mat-card class="post-card" *ngFor="let p of mergedPostUserList">
     <div class="post-creator">
       <img class="profile-image" src="assets\Profile_placeholder.png" alt="" />
       <div class="profile-desc">
-        <span class="profile-name"> name </span>
-        <span class="profile-username"> username </span>
+        <!--
+               <span class="profile-name">
+          {{ p.user.name }} {{ p.user.lastname }}
+        </span>
+        -->
+        <span class="profile-username"> @{{ p.user.username }} </span>
+        <span class="post-creation-date"> {{ p.post.postCreationDate }} </span>
+      </div>
+      <div *ngIf="loggedInUser._id == p.post.userId" class="post-menu">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item id="mat-menu-edit-btn">
+            <mat-icon>edit</mat-icon>
+            <span>Modify Post</span>
+          </button>
+          <button mat-menu-item id="mat-menu-delete-btn">
+            <mat-icon>delete</mat-icon>
+            <span>Delete Post</span>
+          </button>
+        </mat-menu>
       </div>
     </div>
-    <img class="post-img" src="assets/placeholder_image.jpg" alt="" />
-
+    <img
+      *ngIf="p.imageUrl"
+      class="post-img"
+      src="assets/placeholder_image.jpg"
+      alt=""
+    />
     <div class="post-details">
-      <h1>Post title</h1>
-      <span
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, labore
-        inventore ab qui laudantium placeat tempore modi porro esse voluptatum
-        iste, quos neque similique quo quaerat cumque nihil dignissimos
-        maxime?</span
-      >
+      <h1>{{ p.post.postTitle }}</h1>
+      <span>{{ p.post.postContent }}</span>
     </div>
 
     <div class="post-footer">
@@ -40,45 +59,6 @@
       <button mat-button (click)="openPostComments()">
         <mat-icon style="scale: 1.5">chat_bubble_outline</mat-icon>
       </button>
-    </div>
-  </mat-card>
-  <mat-card class="post-card">
-    <div class="post-creator">
-      <img class="profile-image" src="assets\Profile_placeholder.png" alt="" />
-      <div class="profile-desc">
-        <span class="profile-name"> name </span>
-        <span class="profile-username"> username </span>
-      </div>
-    </div>
-
-    <div class="post-details">
-      <h1>Post title</h1>
-      <span
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, labore
-        inventore ab qui laudantium placeat tempore modi porro esse voluptatum
-        iste, quos neque similique quo quaerat cumque nihil dignissimos
-        maxime?</span
-      >
-    </div>
-  </mat-card>
-  <mat-card class="post-card">
-    <div class="post-creator">
-      <img class="profile-image" src="assets\Profile_placeholder.png" alt="" />
-      <div class="profile-desc">
-        <span class="profile-name"> name </span>
-        <span class="profile-username"> username </span>
-      </div>
-    </div>
-    <img class="post-img" src="assets/placeholder_image.jpg" alt="" />
-
-    <div class="post-details">
-      <h1>Post title</h1>
-      <span
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, labore
-        inventore ab qui laudantium placeat tempore modi porro esse voluptatum
-        iste, quos neque similique quo quaerat cumque nihil dignissimos
-        maxime?</span
-      >
     </div>
   </mat-card>
 </section>

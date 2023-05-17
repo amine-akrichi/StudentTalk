@@ -125,3 +125,33 @@
   font-size: 30px;
   font-weight: bold;
 }
+
+.action-btns {
+  display: flex;
+}
+
+.action-btns button {
+  margin: 1vh;
+  border: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.post-footer {
+  display: flex;
+  align-self: flex-start;
+  margin: 2vh;
+  gap: 20px;
+}
+
+.post-menu {
+  position: absolute;
+  right: 1vh;
+}
+
+#mat-menu-delete-btn * {
+  color: red;
+}
+
+#mat-menu-edit-btn * {
+  color: #205295;
+}

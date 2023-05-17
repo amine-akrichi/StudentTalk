@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../../models/post");
+const User = require("../../models/user");
 
 router.get("/", (req, res) => {
   res.send("post");
@@ -50,6 +51,17 @@ router.get("/listPosts", async (req, res) => {
   try {
     let postsList = await Post.find();
     res.status(200).send(postsList);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/listUserPosts", async (req, res) => {
+  let userDate = req.body;
+  let user = new User(userDate);
+  try {
+    let UserPostsList = await Post.find({ userId: user._id });
+    res.status(200).send(UserPostsList);
   } catch (error) {
     console.log(error);
   }
