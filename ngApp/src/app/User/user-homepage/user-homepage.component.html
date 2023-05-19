@@ -15,7 +15,7 @@
 <section class="homepage">
   <mat-card class="post-card" *ngFor="let p of mergedPostUserList">
     <div class="post-creator">
-      <img class="profile-image" src="assets\Profile_placeholder.png" alt="" />
+      <img class="profile-image" [src]="p.user.profileImageUrl" alt="" />
       <div class="profile-desc">
         <!--
                <span class="profile-name">
@@ -23,7 +23,10 @@
         </span>
         -->
         <span class="profile-username"> @{{ p.user.username }} </span>
-        <span class="post-creation-date"> {{ p.post.postCreationDate }} </span>
+        <span class="post-creation-date">
+          {{ p.post.postCreationDate.substr(0, 10) }}
+          {{ p.post.postCreationDate.substr(11, 5) }}
+        </span>
       </div>
       <div *ngIf="loggedInUser._id == p.post.userId" class="post-menu">
         <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -34,7 +37,11 @@
             <mat-icon>edit</mat-icon>
             <span>Modify Post</span>
           </button>
-          <button mat-menu-item id="mat-menu-delete-btn">
+          <button
+            mat-menu-item
+            id="mat-menu-delete-btn"
+            (click)="deletePost(p.post)"
+          >
             <mat-icon>delete</mat-icon>
             <span>Delete Post</span>
           </button>
@@ -42,9 +49,9 @@
       </div>
     </div>
     <img
-      *ngIf="p.imageUrl"
+      *ngIf="p.post.postImageUrl"
       class="post-img"
-      src="assets/placeholder_image.jpg"
+      [src]="p.post.postImageUrl"
       alt=""
     />
     <div class="post-details">

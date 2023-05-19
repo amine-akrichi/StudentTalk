@@ -1,6 +1,6 @@
 <div class="profile-info-div">
   <div class="user-profile-desc">
-    <img class="profile-img" src="assets\Profile_placeholder.png" alt="" />
+    <img class="profile-img" [src]="loggedInUser.profileImageUrl" alt="" />
     <div class="profile-personal-info">
       <h1>{{ loggedInUser.name }} {{ loggedInUser.lastname }}</h1>
       <span>@{{ loggedInUser.username }}</span>
@@ -23,7 +23,12 @@
       <span>Comments</span>
     </div>
     <div class="action-btns">
-      <button mat-mini-fab color="primary" id="settings-btn">
+      <button
+        mat-mini-fab
+        color="primary"
+        id="settings-btn"
+        (click)="openProfileDialog()"
+      >
         <mat-icon>settings</mat-icon>
       </button>
       <button mat-mini-fab color="warn" id="logout-btn" (click)="onLogout()">
@@ -36,7 +41,7 @@
 <section class="user-posts">
   <mat-card class="post-card" *ngFor="let p of mergedPostUserList">
     <div class="post-creator">
-      <img class="profile-image" src="assets\Profile_placeholder.png" alt="" />
+      <img class="profile-image" [src]="p.user.profileImageUrl" alt="" />
       <div class="profile-desc">
         <span class="profile-name">
           {{ p.user.name }} {{ p.user.lastname }}
@@ -60,9 +65,9 @@
       </div>
     </div>
     <img
-      *ngIf="p.imageUrl"
+      *ngIf="p.post.postImageUrl"
       class="post-img"
-      src="assets/placeholder_image.jpg"
+      [src]="p.post.postImageUrl"
       alt=""
     />
     <div class="post-details">

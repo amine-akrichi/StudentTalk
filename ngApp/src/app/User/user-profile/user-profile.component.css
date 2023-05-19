@@ -17,6 +17,8 @@
   border: none;
   border-radius: 50%;
   width: 125px;
+  height: 125px;
+  object-fit: cover;
 }
 
 .user-profile-desc {
@@ -99,6 +101,7 @@
   height: 50px;
   margin: 1vh;
   border: none;
+  object-fit: cover;
 }
 
 .profile-desc {

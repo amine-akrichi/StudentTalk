@@ -1,0 +1,96 @@
+<h1 mat-dialog-title style="font-size: 2em; margin: 1vh">Update profile</h1>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <div class="row">
+      <div class="profile-image-div">
+        <img
+          class="profile-img"
+          id="image-uploaded"
+          [src]="this.data.user.profileImageUrl"
+          alt=""
+        />
+        <input
+          id="upload-photo"
+          type="file"
+          accept="image/*"
+          name="image"
+          (change)="selectImage($event)"
+          #imageInput
+        />
+        <label
+          for="upload-photo"
+          class="upload-photo-label"
+          id="upload-photo-label-change"
+        >
+          <mat-icon>refresh</mat-icon>
+          &nbsp; Change
+        </label>
+        <label
+          class="upload-photo-label"
+          id="remove-photo-label"
+          (click)="removeImage()"
+          ><mat-icon>highlight_off</mat-icon>&nbsp;Remove</label
+        >
+      </div>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="form-control-half-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="name" matInput [(ngModel)]="data.user.name" />
+      </mat-form-field>
+      <mat-form-field class="form-control-half-width" appearance="outline">
+        <mat-label>Lastname</mat-label>
+        <input type="lastname" matInput [(ngModel)]="data.user.lastname" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="form-control-full-width" appearance="outline">
+        <mat-label>Email adress</mat-label>
+        <input type="email" matInput required [(ngModel)]="data.user.email" />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field class="form-control-half-width" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input
+          type="username"
+          matInput
+          required
+          [(ngModel)]="data.user.username"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-control-half-width" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          [(ngModel)]="data.user.password"
+        />
+
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    id="confirm-btn"
+    [mat-dialog-close]="data.user"
+    cdkFocusInitial
+  >
+    Confirm
+  </button>
+</mat-dialog-actions>

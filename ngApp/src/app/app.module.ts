@@ -26,6 +26,9 @@ import { PostService } from './services/post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { UpdateUserProfileDialogComponent } from './User/components/update-user-profile-dialog/update-user-profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,7 @@ import { MatMenuModule } from '@angular/material/menu';
     SignupComponent,
     UserPostingDialogComponent,
     UserCommentsDialogComponent,
+    UpdateUserProfileDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSnackBarModule,
     MatButtonModule,
     MatMenuModule,
+    MatStepperModule,
+    MatProgressBarModule,
   ],
   providers: [AuthService, UserService, PostService],
   bootstrap: [AppComponent],

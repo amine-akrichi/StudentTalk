@@ -28,7 +28,7 @@ export class UserSidebarComponent implements OnInit {
   openPostDialog() {
     const dialogRef = this.dialog.open(UserPostingDialogComponent, {
       panelClass: 'post-dialog',
-      width: '40vw',
+      width: '55vw',
       data: {},
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -38,10 +38,11 @@ export class UserSidebarComponent implements OnInit {
         this._postService.addPost(result).subscribe(
           (res) => {
             console.log(res);
+            let currentURL = this._router.url;
             this._router
-              .navigateByUrl('/User/Profile', { skipLocationChange: true })
+              .navigateByUrl('/', { skipLocationChange: true })
               .then(() => {
-                this._router.navigate(['User/Homepage']);
+                this._router.navigate([currentURL]);
               });
           },
           (err) => {

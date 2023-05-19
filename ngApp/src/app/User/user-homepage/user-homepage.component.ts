@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserCommentsDialogComponent } from '../components/user-comments-dialog/user-comments-dialog.component';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-homepage',
@@ -16,7 +17,8 @@ export class UserHomepageComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private _postService: PostService,
-    private _userService: UserService
+    private _userService: UserService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -67,5 +69,23 @@ export class UserHomepageComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
     });
+  }
+
+  deletePost(post: any) {
+    this._postService.deletePost(post).subscribe(
+      (res) => {
+        this.ngOnInit();
+        let currentURL = this._router.url;
+        this._router
+          .navigateByUrl('/User', { skipLocationChange: true })
+          .then(() => {
+            this._router.navigate([currentURL]);
+          });
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

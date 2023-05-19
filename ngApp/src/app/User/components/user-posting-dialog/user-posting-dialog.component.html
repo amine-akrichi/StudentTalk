@@ -1,11 +1,34 @@
 <div class="mat-dialog-title" mat-dialog-title>
   <h1 style="font-size: 1.6em">Create a new post</h1>
-  <input id="upload-photo" type="file" accept="image/*" />
-  <label for="upload-photo" id="upload-photo-label">
-    <mat-icon>add_photo_alternate</mat-icon> &nbsp; Upload a photo
+  <input
+    id="upload-photo"
+    type="file"
+    accept="image/*"
+    name="image"
+    (change)="selectImage($event)"
+    #imageInput
+  />
+  <label
+    for="upload-photo"
+    [id]="file?.name ? 'upload-photo-label-done' : 'upload-photo-label'"
+  >
+    <mat-icon>{{
+      file?.name ? "check_circle" : "add_photo_alternate"
+    }}</mat-icon>
+    &nbsp;
+    {{ file?.name ? "Photo uploaded " : "Upload a photo" }}
   </label>
 </div>
 <mat-dialog-content class="mat-typography">
+  <div class="row">
+    <img
+      class="form-control-full-width"
+      id="image-uploaded"
+      *ngIf="file?.name"
+      [src]="data.postImageUrl"
+      alt=""
+    />
+  </div>
   <div class="row">
     <mat-form-field class="form-control-full-width" appearance="outline">
       <mat-label>Title</mat-label>

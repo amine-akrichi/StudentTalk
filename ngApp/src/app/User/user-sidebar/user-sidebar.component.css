@@ -77,6 +77,7 @@
   margin: 5px;
   border: none;
   align-self: center;
+  object-fit: cover;
 }
 .profile-desc {
   display: flex;

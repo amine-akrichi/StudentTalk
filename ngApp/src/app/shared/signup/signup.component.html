@@ -3,7 +3,42 @@
     <div class="form-div">
       <form name="loginForm" [formGroup]="signupForm">
         <h1>Create an account</h1>
-        <div class="form-control">
+
+        <div class="row">
+          <div class="profile-image-div">
+            <img
+              class="profile-img"
+              id="image-uploaded"
+              [src]="signupForm.get('profileImageUrl')!.value"
+              alt=""
+            />
+            <input
+              id="upload-photo"
+              type="file"
+              accept="image/*"
+              name="image"
+              (change)="selectImage($event)"
+              #imageInput
+            />
+            <label
+              for="upload-photo"
+              class="upload-photo-label"
+              [id]="
+                file?.name ? 'upload-photo-label-change' : 'upload-photo-label'
+              "
+            >
+              <mat-icon>{{ file?.name ? "refresh" : "upload" }}</mat-icon>
+              &nbsp;
+              {{ file?.name ? "Change " : "Upload" }}
+            </label>
+            <label
+              class="upload-photo-label"
+              id="remove-photo-label"
+              (click)="removeImage()"
+              ><mat-icon>highlight_off</mat-icon>&nbsp;Remove</label
+            >
+          </div>
+
           <mat-form-field class="form-control-half-width" appearance="outline">
             <mat-label>Name</mat-label>
             <input type="name" formControlName="name" matInput />
@@ -14,7 +49,7 @@
             <input type="lastname" formControlName="lastname" matInput />
           </mat-form-field>
 
-          <mat-form-field class="form-control-full-width" appearance="outline">
+          <mat-form-field class="form-control-half-width" appearance="outline">
             <mat-label>Email adress</mat-label>
             <input type="email" formControlName="email" matInput required />
             <mat-error *ngIf="signupForm.get('email')?.errors?.['required']">
@@ -22,7 +57,7 @@
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="form-control-full-width" appearance="outline">
+          <mat-form-field class="form-control-half-width" appearance="outline">
             <mat-label>Username</mat-label>
             <input
               type="username"

@@ -2,6 +2,29 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../../models/post");
 const User = require("../../models/user");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: (req, file, callBack) => {
+    callBack(null, "src/uploads/images");
+  },
+  filename: (req, file, callBack) => {
+    console.log(file);
+    callBack(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+router.post("/uploadImage", upload.single("Postimage"), (req, res) => {
+  const image = req.file;
+  console.log(image.filename);
+  if (image) {
+    res.status(200).send(image);
+  } else {
+    console.log("no file");
+  }
+});
 
 router.get("/", (req, res) => {
   res.send("post");

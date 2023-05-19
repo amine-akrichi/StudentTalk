@@ -1,0 +1,119 @@
+.form-div {
+  padding: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 4em;
+  color: #205295;
+  padding: 5px;
+  margin-bottom: 5vh;
+}
+
+#sbmt-btn {
+  color: white;
+  background-color: #205295;
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 500;
+  font-size: 2em;
+  height: 7vh;
+  border-radius: 25px;
+  width: 50%;
+}
+
+.account-creation-div {
+  font-size: 1.1em;
+}
+.account-creation-div a {
+  color: #205295;
+  font-weight: 600;
+}
+
+.form-control {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-control-half-width {
+  width: calc(40% - 1vh);
+  margin: 1vh;
+}
+
+.form-control-full-width {
+  width: 80%;
+  margin: 1vh;
+}
+
+.profile-image-div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 1vh;
+}
+
+.profile-img {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 1vh;
+}
+
+#upload-photo {
+  display: none;
+}
+
+.upload-photo-label {
+  cursor: pointer;
+  padding: 1vh;
+  margin: 1vh;
+  border-radius: 5vh;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 30px;
+  text-align: center;
+}
+
+#upload-photo-label {
+  background-color: #205295;
+  color: white;
+}
+
+#upload-photo-label-change {
+  background-color: #94aa2a;
+  color: white;
+}
+
+#remove-photo-label {
+  background-color: #dd5353;
+  color: white;
+}
+
+.mat-dialog-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2vh;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#confirm-btn {
+  color: #205295;
+  font-size: 1.2em;
+}
