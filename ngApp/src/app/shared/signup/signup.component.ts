@@ -105,16 +105,11 @@ export class SignupComponent implements OnInit {
           this.isAdmin();
         },
         (err) => {
-          let errorStatus = err.status;
-          let errorMessage = 'Registration Failed';
-          console.log(err);
-          if (errorStatus == 401) {
-            errorMessage = 'Username already exists';
-          }
-          this._snackBar.open(errorMessage, 'ok', {
+          this._snackBar.open('⛔  ' + err.error, 'OK', {
             duration: 2000,
             horizontalPosition: this.horizontalPosition,
             verticalPosition: this.verticalPosition,
+            panelClass: 'custom-snackbar',
           });
         }
       );

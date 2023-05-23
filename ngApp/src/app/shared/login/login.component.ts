@@ -51,10 +51,11 @@ export class LoginComponent implements OnInit {
         },
         (err) => {
           console.log(err);
-          this._snackBar.open('Username ou mot de passe incorrect', 'ok', {
+          this._snackBar.open('⛔  ' + err.error, 'OK', {
             duration: 2000,
             horizontalPosition: this.horizontalPosition,
             verticalPosition: this.verticalPosition,
+            panelClass: 'custom-snackbar',
           });
         }
       );

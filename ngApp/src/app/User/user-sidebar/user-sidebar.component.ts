@@ -4,6 +4,11 @@ import { UserPostingDialogComponent } from '../components/user-posting-dialog/us
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
 import { UserHomepageComponent } from '../user-homepage/user-homepage.component';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-sidebar',
@@ -12,12 +17,15 @@ import { UserHomepageComponent } from '../user-homepage/user-homepage.component'
 })
 export class UserSidebarComponent implements OnInit {
   loggedInUser: any;
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   @ViewChild(UserHomepageComponent)
   homepageComponent!: UserHomepageComponent;
   constructor(
     private dialog: MatDialog,
     private _router: Router,
-    private _postService: PostService
+    private _postService: PostService,
+    private _snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
     this.loggedInUser = JSON.parse(
@@ -44,6 +52,12 @@ export class UserSidebarComponent implements OnInit {
               .then(() => {
                 this._router.navigate([currentURL]);
               });
+            this._snackBar.open('Post Added', 'OK', {
+              duration: 2000,
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              panelClass: 'custom-snackbar',
+            });
           },
           (err) => {
             console.log(err);

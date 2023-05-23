@@ -43,12 +43,18 @@
     <div class="post-creator">
       <img class="profile-image" [src]="p.user.profileImageUrl" alt="" />
       <div class="profile-desc">
-        <span class="profile-name">
+        <!--
+               <span class="profile-name">
           {{ p.user.name }} {{ p.user.lastname }}
         </span>
-        <span class="profile-username"> {{ p.user.username }} </span>
+        -->
+        <span class="profile-username"> @{{ p.user.username }} </span>
+        <span class="post-creation-date">
+          {{ p.post.postCreationDate.substr(0, 10) }}
+          {{ p.post.postCreationDate.substr(11, 5) }}
+        </span>
       </div>
-      <div class="post-menu">
+      <div *ngIf="loggedInUser._id == p.post.userId" class="post-menu">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
@@ -57,7 +63,11 @@
             <mat-icon>edit</mat-icon>
             <span>Modify Post</span>
           </button>
-          <button mat-menu-item id="mat-menu-delete-btn">
+          <button
+            mat-menu-item
+            id="mat-menu-delete-btn"
+            (click)="deletePost(p.post)"
+          >
             <mat-icon>delete</mat-icon>
             <span>Delete Post</span>
           </button>
@@ -75,13 +85,78 @@
       <span>{{ p.post.postContent }}</span>
     </div>
 
-    <div class="post-footer">
-      <button mat-button>
-        <mat-icon style="scale: 1.5">thumb_up_off_alt</mat-icon>
+    <mat-expansion-panel class="post-footer">
+      <mat-expansion-panel-header>
+        <span id="post-stats">
+          <p>{{ p.likes.length + " " }}</p>
+          Likes,&nbsp;
+          <p>{{ p.comments ? p.comments.length : "0" }}</p>
+          Comments</span
+        >
+      </mat-expansion-panel-header>
+      <button id="add-comment-btn" mat-button (click)="addComment(p.post)">
+        <mat-icon>post_add</mat-icon> Add Comment
       </button>
-      <button mat-button (click)="openPostComments()">
-        <mat-icon style="scale: 1.5">chat_bubble_outline</mat-icon>
+      <button
+        class="like-btn"
+        id="like-btn-liked"
+        mat-button
+        (click)="addComment(p.post)"
+      >
+        <mat-icon>thumb_up_off_alt</mat-icon>Like Post
       </button>
-    </div>
+      <div class="comment-section">
+        <span
+          id="no-comments-span"
+          *ngIf="!p.comments"
+          style="font-size: 16px; text-align: center"
+          >No Comments Yet. Be the first to comment</span
+        >
+        <mat-card class="comment-card" *ngFor="let c of p.comments">
+          <div *ngIf="loggedInUser._id == c.comment.userId" class="post-menu">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button
+                mat-menu-item
+                id="mat-menu-edit-btn"
+                (click)="updateComment(c.comment)"
+              >
+                <mat-icon>edit</mat-icon>
+                <span>Modify Comment</span>
+              </button>
+              <button
+                mat-menu-item
+                id="mat-menu-delete-btn"
+                (click)="deleteComment(c.comment)"
+              >
+                <mat-icon>delete</mat-icon>
+                <span>Delete Comment</span>
+              </button>
+            </mat-menu>
+          </div>
+          <div class="comment-post-creator">
+            <img
+              class="comment-profile-image"
+              [src]="c.commentUser.profileImageUrl"
+              alt=""
+            />
+            <div class="comment-profile-desc">
+              <span class="comment-profile-username">
+                @{{ c.commentUser.username }}
+              </span>
+              <span class="comment-date">
+                {{ c.comment.commentCreationDate.substr(0, 10) }}
+                {{ c.comment.commentCreationDate.substr(11, 5) }}</span
+              >
+            </div>
+          </div>
+          <div class="user-comment">
+            <span class="comment-content"> {{ c.comment.commentDetails }}</span>
+          </div>
+        </mat-card>
+      </div>
+    </mat-expansion-panel>
   </mat-card>
 </section>

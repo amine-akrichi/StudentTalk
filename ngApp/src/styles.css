@@ -60,3 +60,15 @@ mat-card:hover {
   border-radius: 5px;
   background-color: #205295;
 }
+.custom-snackbar .mdc-snackbar__surface {
+  padding: 0.5vh;
+  border-radius: 15px !important;
+}
+
+.custom-snackbar .mdc-snackbar__surface * {
+  font-size: 16px !important;
+}
+
+.custom-snackbar .mat-mdc-snack-bar-actions * {
+  color: #dd5353 !important;
+}

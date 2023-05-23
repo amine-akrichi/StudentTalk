@@ -1,0 +1,54 @@
+<div class="mat-dialog-title" mat-dialog-title>
+  <h1 style="font-size: 1.6em">Modify Post</h1>
+</div>
+<mat-dialog-content class="mat-typography">
+  <div class="row">
+    <img
+      class="form-control-full-width"
+      id="image-uploaded"
+      [src]="data.post.postImageUrl"
+      alt=""
+    />
+  </div>
+  <div class="row">
+    <mat-form-field class="form-control-half-width" appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="data.post.postCategory">
+        <mat-option value="Campus Events">Campus Events</mat-option>
+        <mat-option value="Education">Education</mat-option>
+        <mat-option value="Campus Life">Campus Life</mat-option>
+        <mat-option value="Campus News">Campus News</mat-option>
+        <mat-option value="Technology and Innovation"
+          >Technology and Innovation</mat-option
+        >
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-control-half-width" appearance="outline">
+      <mat-label>Title</mat-label>
+      <input [(ngModel)]="data.post.postTitle" matInput name="title" />
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <mat-form-field class="form-control-full-width" appearance="outline">
+      <mat-label>Content</mat-label>
+      <textarea
+        [(ngModel)]="data.post.postContent"
+        matInput
+        name="content"
+        rows="10"
+      ></textarea>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-button
+    id="confirm-btn"
+    [mat-dialog-close]="data.post"
+    cdkFocusInitial
+  >
+    Confirm
+  </button>
+</mat-dialog-actions>

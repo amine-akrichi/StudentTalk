@@ -1,9 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UserCommentsDialogComponent } from '../components/user-comments-dialog/user-comments-dialog.component';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { LikeService } from 'src/app/services/like.service';
+import { CommentService } from 'src/app/services/comment.service';
+import { AddCommentDialogComponent } from '../components/add-comment-dialog/add-comment-dialog.component';
+import { forkJoin } from 'rxjs';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import { UpdateCommentDialogComponent } from '../components/update-comment-dialog/update-comment-dialog.component';
+import { UpdatePostDialogComponent } from '../components/update-post-dialog/update-post-dialog.component';
 
 @Component({
   selector: 'app-user-homepage',
@@ -14,11 +24,18 @@ export class UserHomepageComponent implements OnInit {
   loggedInUser: any;
   postsList: any[] = [];
   mergedPostUserList: any[] = [];
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  /*@ViewChild('scrollableElement', { static: false })
+  scrollableElement: ElementRef;*/
+
   constructor(
     private dialog: MatDialog,
     private _postService: PostService,
     private _userService: UserService,
-    private _router: Router
+    private _likeService: LikeService,
+    private _commentService: CommentService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -27,9 +44,9 @@ export class UserHomepageComponent implements OnInit {
       (res) => {
         this.postsList = res;
         this.postsList.reverse();
-        console.log(this.postsList);
-
-        this.joinUserPosts();
+        this.mergedPostUserList = [];
+        this.joinPostTables();
+        console.log(this.mergedPostUserList);
       },
       (err) => {
         console.log(err);
@@ -37,11 +54,53 @@ export class UserHomepageComponent implements OnInit {
     );
   }
 
-  joinUserPosts() {
+  joinPostTables() {
     this.postsList.forEach((post: any) => {
       this._userService.findUserWithPost(post).subscribe(
         (user) => {
-          this.mergedPostUserList.push({ post, user });
+          this._likeService.listPostLikes(post).subscribe(
+            (likes) => {
+              this._commentService.listPostComments(post).subscribe(
+                (comments) => {
+                  if (comments.length > 0) {
+                    const commentObservables = comments.map((comment) =>
+                      this._userService.findUserWithComment(comment)
+                    );
+
+                    forkJoin(commentObservables).subscribe(
+                      (commentUserList) => {
+                        this.mergedPostUserList.push({
+                          post,
+                          user,
+                          likes,
+                          comments: comments.map((comment, index) => ({
+                            comment,
+                            commentUser: commentUserList[index],
+                          })),
+                        });
+                      },
+                      (err) => {
+                        console.log(err);
+                      }
+                    );
+                  } else {
+                    this.mergedPostUserList.push({
+                      post,
+                      user,
+                      likes,
+                      comments: null,
+                    });
+                  }
+                },
+                (err) => {
+                  console.log(err);
+                }
+              );
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
         },
         (err) => {
           console.log(err);
@@ -60,27 +119,118 @@ export class UserHomepageComponent implements OnInit {
     );
   }
 
-  openPostComments() {
-    const dialogRef = this.dialog.open(UserCommentsDialogComponent, {
+  addComment(post: any) {
+    const dialogRef = this.dialog.open(AddCommentDialogComponent, {
+      data: {
+        userId: this.loggedInUser._id,
+        postId: post._id,
+      },
       panelClass: 'post-dialog',
-      width: '65vw',
-      height: '90vh',
+      width: '40vw',
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      if (result) {
+        this._commentService.addComment(result).subscribe(
+          (res) => {
+            console.log(res);
+            this.ngOnInit();
+            this._snackBar.open('Comment Added', 'OK', {
+              duration: 2000,
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              panelClass: 'custom-snackbar',
+            });
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      }
+    });
+  }
+
+  updateComment(comment: any) {
+    const dialogRef = this.dialog.open(UpdateCommentDialogComponent, {
+      data: {
+        comment: comment,
+      },
+      panelClass: 'post-dialog',
+      width: '40vw',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this._commentService.updateComment(result).subscribe(
+          (res) => {
+            console.log(res);
+            this.ngOnInit();
+            this._snackBar.open('Comment Updated', 'OK', {
+              duration: 2000,
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              panelClass: 'custom-snackbar',
+            });
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      }
+    });
+  }
+
+  deleteComment(comment: any) {
+    this._commentService.deleteComment(comment).subscribe((res) => {
+      this.ngOnInit();
+      this._snackBar.open('Comment Deleted', 'OK', {
+        duration: 2000,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+        panelClass: 'custom-snackbar',
+      });
+      console.log(res);
+    });
+  }
+
+  editPost(post: any) {
+    const dialogRef = this.dialog.open(UpdatePostDialogComponent, {
+      data: {
+        post: post,
+      },
+      panelClass: 'post-dialog',
+      width: '55vw',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this._postService.updatePost(result).subscribe(
+          (res) => {
+            console.log(res);
+            this.ngOnInit();
+            this._snackBar.open('Post Edited', 'OK', {
+              duration: 2000,
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+              panelClass: 'custom-snackbar',
+            });
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+        console.log(result);
+      }
     });
   }
 
   deletePost(post: any) {
     this._postService.deletePost(post).subscribe(
       (res) => {
+        this._snackBar.open('Post Deleted', 'OK', {
+          duration: 2000,
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+          panelClass: 'custom-snackbar',
+        });
         this.ngOnInit();
-        let currentURL = this._router.url;
-        this._router
-          .navigateByUrl('/User', { skipLocationChange: true })
-          .then(() => {
-            this._router.navigate([currentURL]);
-          });
         console.log(res);
       },
       (err) => {

@@ -9,6 +9,8 @@ export class UserService {
     'http://localhost:3000/api/user/findUserWithPost';
   private _uploadProfileImageUrl = 'http://localhost:3000/api/user/uploadImage';
   private _updateUserUrl = 'http://localhost:3000/api/user/updateUser';
+  private _findUserWithCommentUrl =
+    'http://localhost:3000/api/user/findUserWithComment';
 
   constructor(private http: HttpClient) {}
 
@@ -17,6 +19,9 @@ export class UserService {
   }
   findUserWithPost(post: any) {
     return this.http.post<any>(this._findUserWithPostURL, post);
+  }
+  findUserWithComment(comment: any) {
+    return this.http.post<any>(this._findUserWithCommentUrl, comment);
   }
   updateUser(user: any) {
     return this.http.post<any>(this._updateUserUrl, user);

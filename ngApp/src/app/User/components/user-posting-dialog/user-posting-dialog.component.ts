@@ -10,7 +10,6 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 export class UserPostingDialogComponent {
   file: any;
   images: any;
-  hiddenBar: boolean = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _fileUploadService: FileUploadService

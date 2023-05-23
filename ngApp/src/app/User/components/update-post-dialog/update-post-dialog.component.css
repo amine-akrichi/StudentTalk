@@ -1,0 +1,78 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-control-half-width {
+  margin-right: 1vh;
+  margin-left: 1vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  width: 40%;
+}
+
+.form-control-full-width {
+  width: calc(80% + 2vh);
+  margin-top: 2vh;
+}
+
+.form-control-third-width {
+  width: calc(80% / 3 - 0.5vh);
+  margin-right: 1vh;
+  margin-left: 1vh;
+}
+
+#confirm-btn {
+  color: #205295;
+  font-size: 1.2em;
+}
+
+#upload-photo {
+  display: none;
+}
+
+#upload-photo-label {
+  background-color: #205295;
+  color: white;
+  cursor: pointer;
+  padding: 1vh;
+  margin: 1vh;
+  border-radius: 5vh;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1vh;
+}
+
+#upload-photo-label-done {
+  background-color: green;
+  color: white;
+  pointer-events: none;
+  cursor: not-allowed;
+  padding: 1vh;
+  margin: 1vh;
+  border-radius: 5vh;
+  font-size: 16px;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1vh;
+}
+
+.mat-dialog-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 2vh;
+}
+
+#image-uploaded {
+  height: 50vh;
+  border-radius: 15px;
+  object-fit: cover;
+}

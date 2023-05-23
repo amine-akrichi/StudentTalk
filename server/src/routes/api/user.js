@@ -75,4 +75,14 @@ router.post("/findUserWithPost", async (req, res) => {
   }
 });
 
+router.post("/findUserWithComment", async (req, res) => {
+  let commentData = req.body;
+  try {
+    let user = await User.findOne({ _id: commentData.userId });
+    res.status(200).send(user);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = router;

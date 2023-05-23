@@ -7,6 +7,7 @@ const userSchema = new Schema({
   postTitle: String,
   postContent: String,
   postImageUrl: String,
+  postCategory: String,
 });
 
 module.exports = mongoose.model("post", userSchema, "posts");

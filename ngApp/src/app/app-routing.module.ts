@@ -5,6 +5,7 @@ import { SignupComponent } from './shared/signup/signup.component';
 import { UserHomepageComponent } from './User/user-homepage/user-homepage.component';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
 import { UserSidebarComponent } from './User/user-sidebar/user-sidebar.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'User',
+    canActivate: [AuthGuard],
     component: UserSidebarComponent,
     children: [
       {

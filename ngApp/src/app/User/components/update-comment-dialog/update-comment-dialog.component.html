@@ -1,0 +1,28 @@
+<div>
+  <h1 style="font-size: 1.5em" mat-dialog-title>Modify Comment</h1>
+  <mat-dialog-content class="mat-typography">
+    <div class="row">
+      <mat-form-field class="form-control-full-width" appearance="outline">
+        <mat-label>Comment Details</mat-label>
+        <textarea
+          [(ngModel)]="data.comment.commentDetails"
+          matInput
+          name="title"
+          rows="5"
+          required="true"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button
+      mat-button
+      id="confirm-btn"
+      [mat-dialog-close]="data.comment"
+      cdkFocusInitial
+    >
+      Update
+    </button>
+  </mat-dialog-actions>
+</div>

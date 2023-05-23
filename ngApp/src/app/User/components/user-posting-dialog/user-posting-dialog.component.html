@@ -30,7 +30,20 @@
     />
   </div>
   <div class="row">
-    <mat-form-field class="form-control-full-width" appearance="outline">
+    <mat-form-field class="form-control-half-width" appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="data.postCategory">
+        <mat-option value="Campus Events">Campus Events</mat-option>
+        <mat-option value="Education">Education</mat-option>
+        <mat-option value="Campus Life">Campus Life</mat-option>
+        <mat-option value="Campus News">Campus News</mat-option>
+        <mat-option value="Technology and Innovation"
+          >Technology and Innovation</mat-option
+        >
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="form-control-half-width" appearance="outline">
       <mat-label>Title</mat-label>
       <input [(ngModel)]="data.postTitle" matInput name="title" />
     </mat-form-field>
